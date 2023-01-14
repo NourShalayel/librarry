@@ -83,5 +83,9 @@ class FirebaseFireStoreHelper {
     await firestore.collection(bookCollection).get();
     return AllBooks;
   }
-
+  Future<QuerySnapshot<Map<String, dynamic>>> getLastBooks() async {
+    QuerySnapshot<Map<String, dynamic>> AllBooks =
+    await firestore.collection(bookCollection).limit(5).get();
+    return AllBooks;
+  }
 }

@@ -1,9 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:librarry/Proivder/BooksProvider.dart';
 import 'package:librarry/Screens/addAuthorScreen.dart';
 import 'package:librarry/Screens/addBookScreen.dart';
 import 'package:librarry/Screens/showAuthors.dart';
 import 'package:librarry/Screens/showCategories.dart';
+import 'package:provider/provider.dart';
 
 import '../Services/FirebaseAuthHelper.dart';
 import 'addCategoryScreen.dart';
@@ -17,6 +19,14 @@ class home_screen extends StatefulWidget {
 }
 
 class _home_screenState extends State<home_screen> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Provider.of<BooksProvider>(context, listen: false).getLastBooksInList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +57,10 @@ class _home_screenState extends State<home_screen> {
             Padding(
               padding: const EdgeInsets.all(40.0),
               child: Container(
-                width: MediaQuery.of(context).size.width,
+                width: MediaQuery
+                    .of(context)
+                    .size
+                    .width,
                 child: FittedBox(
                     fit: BoxFit.contain,
                     child: Text(
@@ -60,7 +73,7 @@ class _home_screenState extends State<home_screen> {
               color: Color(0xffd3cfcf),
             ),
             InkWell(
-              onTap: (){
+              onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => addCategory()));
               },
@@ -88,9 +101,8 @@ class _home_screenState extends State<home_screen> {
               color: Color(0xffd3cfcf),
             ),
 
-
             InkWell(
-              onTap: (){
+              onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => addAuthor()));
               },
@@ -119,7 +131,7 @@ class _home_screenState extends State<home_screen> {
             ),
 
             InkWell(
-              onTap: (){
+              onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => addBook()));
               },
@@ -148,7 +160,7 @@ class _home_screenState extends State<home_screen> {
             ),
 
             InkWell(
-              onTap: (){
+              onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => showCategories()));
               },
@@ -177,7 +189,7 @@ class _home_screenState extends State<home_screen> {
             ),
 
             InkWell(
-              onTap: (){
+              onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => showAuthors()));
               },
@@ -204,7 +216,6 @@ class _home_screenState extends State<home_screen> {
             Divider(
               color: Color(0xffd3cfcf),
             ),
-
 
             InkWell(
               onTap: () async {
@@ -242,6 +253,111 @@ class _home_screenState extends State<home_screen> {
         ),
       ),
 
+      body: Consumer<BooksProvider>(
+        builder: (context, bookprovider, _) =>
+        bookprovider
+            .BooksList.isEmpty
+            ? Center(child: CircularProgressIndicator())
+            : ListView(
+          padding: EdgeInsets.only(left: 10 , top: 20),
+
+          children: [
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Last Books",
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    Container(
+                        padding: EdgeInsets.only(right: 15),
+                        child: Icon(
+                          Icons.arrow_forward_ios,
+                          size: 15,
+                          color: Colors.grey,
+                        ))
+                  ],
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 25),
+                  height: 210,
+                  child: ListView.builder(
+                      itemCount: bookprovider.BooksList.length,
+                      physics: BouncingScrollPhysics(),
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          padding: EdgeInsets.only(right: 20.0),
+                          child: Stack(children: [
+                            Container(
+                              width:
+                              MediaQuery.of(context).size.width / 2,
+                              height:
+                              MediaQuery.of(context).size.height / 3,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.5),
+                                    spreadRadius: 2,
+                                    blurRadius: 10,
+                                    offset: Offset(0, 3),
+                                  ),
+                                ],
+                                image: DecorationImage(
+                                    image:
+                                    NetworkImage(bookprovider.BooksList[index].img!),
+                                    fit: BoxFit.fill),
+                              ),
+                            ),
+                            Container(
+                                width:
+                                MediaQuery.of(context).size.width / 2,
+                                height:
+                                MediaQuery.of(context).size.height / 4.4,
+                                padding: EdgeInsets.all(10.0),
+                                alignment: Alignment.bottomLeft,
+                                child: Text(
+                                  bookprovider.BooksList[index].name!,
+                                  style: TextStyle(color: Colors.white),
+                                )),
+                            Container(
+                                width:
+                                MediaQuery.of(context).size.width / 2,
+                                height: MediaQuery.of(context).size.height /
+                                    4,
+                                padding: EdgeInsets.all(10.0),
+                                alignment: Alignment.bottomLeft,
+                                child: Text(
+                                  bookprovider.BooksList[index].category_name!,
+                                  style: TextStyle(color: Colors.grey),
+                                ))
+                          ]),
+                        );
+
+                        //   Container(
+                        //   margin: EdgeInsets.only(right: 19),
+                        //   height: 210,
+                        //   width: 153,
+                        //   decoration: BoxDecoration(
+                        //       borderRadius: BorderRadius.circular(10),
+                        //       color: Colors.pink,
+                        //       image: DecorationImage(
+                        //         image:NetworkImage(bookprovider.BooksList[index].img!)
+                        //       )
+                        //   ),
+                        // );
+                      }),
+                ),
+
+
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

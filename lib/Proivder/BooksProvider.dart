@@ -31,4 +31,14 @@ class BooksProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  getLastBooksInList() async {
+    QuerySnapshot<Map<String, dynamic>> snapshot =
+    await FirebaseFireStoreHelper.fireStoreHelper.getLastBooks();
+    BooksList.clear();
+    for (var i in snapshot.docs) {
+        BooksList.add(Books.fromJson(i.data()));
+    }
+    notifyListeners();
+  }
+
 }
