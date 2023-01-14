@@ -1,32 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:librarry/Proivder/BooksProvider.dart';
 import 'package:librarry/Screens/addAuthorScreen.dart';
-import 'package:librarry/Screens/showAuthBooks.dart';
 import 'package:provider/provider.dart';
 import 'package:scaled_list/scaled_list.dart';
 
 import '../Proivder/AuthorsProvider.dart';
 
-class showAuthors extends StatefulWidget {
-  const showAuthors({Key? key}) : super(key: key);
+class showBooks extends StatefulWidget {
+  const showBooks({Key? key, required this.catName}) : super(key: key);
+  final String catName;
 
   @override
-  State<showAuthors> createState() => _showAuthorsState();
+  State<showBooks> createState() => _showBooksState();
 }
 
-class _showAuthorsState extends State<showAuthors> {
+class _showBooksState extends State<showBooks> {
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    Provider.of<AuthorsProvider>(context, listen: false).geAuthorsInList();
+    Provider.of<BooksProvider>(context, listen: false).getBooksCatInList('${widget.catName}');
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Consumer<AuthorsProvider>(
-      builder: (context, authorprovider, _) => authorprovider
-              .AuthorsList.isEmpty
+        // body: Center(
+        //   child: Text('${widget.catName}'),
+        // ),
+
+        body: Consumer<BooksProvider>(
+      builder: (context, bookprovider, _) => bookprovider.BooksList.isEmpty
           ? Center(child: CircularProgressIndicator())
           : Center(
               child: SingleChildScrollView(
@@ -39,34 +43,35 @@ class _showAuthorsState extends State<showAuthors> {
                         child: Column(
                           children: [
                             Text(
-                              "Our Authors",
+                              "Our Books",
                               style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.blueGrey),
                             ),
                             ScaledList(
-                              itemCount: authorprovider.AuthorsList.length,
+                              itemCount: bookprovider.BooksList.length,
                               itemColor: (index) {
                                 return kMixedColors[
                                     index % kMixedColors.length];
                               },
                               itemBuilder: (index, selectedIndex) {
-                                final author =
-                                    authorprovider.AuthorsList[index];
+                                final book =
+                                    bookprovider.BooksList[index];
                                 return InkWell(
                                   onTap: () {
+                                    print("*********************************************");
+                                    print(bookprovider.BooksList.length);
                                     Navigator.of(context).push(
                                         MaterialPageRoute(
-                                            builder: (context) =>
-                                                showAuthBooks(authName: author.name!)));
+                                            builder: (context) => addAuthor()));
                                   },
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       SizedBox(height: 15),
                                       Text(
-                                        author.name!,
+                                        book.name!,
                                         style: TextStyle(
                                             color: Colors.orange,
                                             fontSize: selectedIndex == index

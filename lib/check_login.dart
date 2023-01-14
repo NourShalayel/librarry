@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
 import 'package:librarry/Screens/home.dart';
+import 'package:librarry/Screens/home_screen.dart';
 import 'package:librarry/Screens/login.dart';
 
 
@@ -15,7 +16,7 @@ class check_login extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context , snapshot){
           if(snapshot.hasData){
-            return home();
+            return home_screen();
           }else{
             return login();
           }

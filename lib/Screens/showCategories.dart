@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:librarry/Screens/addCategoryScreen.dart';
+import 'package:librarry/Screens/showBooks.dart';
 
 import 'package:provider/provider.dart';
 import 'package:scaled_list/scaled_list.dart';
@@ -57,10 +58,11 @@ class _showCategoriesState extends State<showCategories> {
                                     categoryproivder.CategoriesList[index];
                                 return InkWell(
                                   onTap: () {
+
                                     Navigator.of(context).push(
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                addCategory()));
+                                                showBooks(catName : category.name!)));
                                   },
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,

@@ -376,7 +376,8 @@ class _addBookState extends State<addBook> {
                                 onPressed: () {
                                   FirebaseFireStorge.firebaseFireStorge
                                       .UploadFile(imageFile)
-                                      .then((value) => FirebaseFireStoreHelper.fireStoreHelper.addBook(Books(
+                                      .then((value) => FirebaseFireStoreHelper.fireStoreHelper.addBook(
+                                      Books(
                                           name: book_name_controller.text,
                                           img: FirebaseFireStorge
                                               .firebaseFireStorge.downloadUrl,

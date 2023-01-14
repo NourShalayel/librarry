@@ -46,6 +46,8 @@ class FirebaseFireStoreHelper {
     return allAuthors;
   }
 
+
+
   List<Categories> CategoryList = [];
 
   getCategoriesInList() async {
@@ -71,7 +73,15 @@ class FirebaseFireStoreHelper {
 
   Future addBook(Books book) async {
     DocumentReference docRef =
-    await firestore.collection(authorCollection).add(book.toJson());
+    await firestore.collection(bookCollection).add(book.toJson());
     docRef.update({'id': docRef.id});
   }
+
+
+  Future<QuerySnapshot<Map<String, dynamic>>> getAllBooks() async {
+    QuerySnapshot<Map<String, dynamic>> AllBooks =
+    await firestore.collection(bookCollection).get();
+    return AllBooks;
+  }
+
 }

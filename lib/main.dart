@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:librarry/Proivder/BooksProvider.dart';
 import 'package:librarry/check_login.dart';
 import 'package:provider/provider.dart';
 
@@ -16,6 +17,9 @@ void main() {
           }),
           ChangeNotifierProvider<AuthorsProvider>(create: (context) {
             return AuthorsProvider();
+          }),
+          ChangeNotifierProvider<BooksProvider>(create: (context) {
+            return BooksProvider();
           }),
         ],
         child: MaterialApp(
