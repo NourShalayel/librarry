@@ -32,7 +32,7 @@ class _home_screenState extends State<home_screen> {
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.black),
-        backgroundColor: Color(0xffea9ab5),
+        backgroundColor: Color(0xff3f51b5),
         title: Text("Home", style: TextStyle(color: Colors.black)),
         centerTitle: true,
         elevation: 10,
@@ -42,7 +42,7 @@ class _home_screenState extends State<home_screen> {
         child: ListView(
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.only(top: 70.0),
+              padding: const EdgeInsets.only(top: 00.0),
               child: Container(
                 width: 150,
                 height: 150,
@@ -55,7 +55,7 @@ class _home_screenState extends State<home_screen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(40.0),
+              padding: const EdgeInsets.all(20.0),
               child: Container(
                 width: MediaQuery
                     .of(context)
@@ -63,10 +63,10 @@ class _home_screenState extends State<home_screen> {
                     .width,
                 child: FittedBox(
                     fit: BoxFit.contain,
-                    child: Text(
-                      'Rachelle D.Michael',
-                    )),
-              ),
+                    child:
+                    Image.asset('assets/images/book.png')),
+
+                ),
             ),
 
             Divider(
@@ -84,7 +84,7 @@ class _home_screenState extends State<home_screen> {
                     children: [
                       Icon(
                         Icons.category,
-                        color: Color(0xffea9ab5),
+                        color: Color(0xff3f51b5),
                       ),
                       Container(
                           margin: EdgeInsets.only(left: 20.0),
@@ -113,7 +113,7 @@ class _home_screenState extends State<home_screen> {
                     children: [
                       Icon(
                         Icons.person_add,
-                        color: Color(0xffea9ab5),
+                        color: Color(0xff3f51b5),
                       ),
                       Container(
                           margin: EdgeInsets.only(left: 20.0),
@@ -142,7 +142,7 @@ class _home_screenState extends State<home_screen> {
                     children: [
                       Icon(
                         Icons.menu_book,
-                        color: Color(0xffea9ab5),
+                        color: Color(0xff3f51b5),
                       ),
                       Container(
                           margin: EdgeInsets.only(left: 20.0),
@@ -171,7 +171,7 @@ class _home_screenState extends State<home_screen> {
                     children: [
                       Icon(
                         Icons.category_outlined,
-                        color: Color(0xffea9ab5),
+                        color: Color(0xff3f51b5),
                       ),
                       Container(
                           margin: EdgeInsets.only(left: 20.0),
@@ -200,7 +200,7 @@ class _home_screenState extends State<home_screen> {
                     children: [
                       Icon(
                         Icons.person,
-                        color: Color(0xffea9ab5),
+                        color: Color(0xff3f51b5),
                       ),
                       Container(
                           margin: EdgeInsets.only(left: 20.0),
@@ -232,7 +232,7 @@ class _home_screenState extends State<home_screen> {
                     children: [
                       Icon(
                         Icons.logout,
-                        color: Color(0xffea9ab5),
+                        color: Color(0xff3f51b5),
                       ),
                       Container(
                           margin: EdgeInsets.only(left: 20.0),
@@ -271,27 +271,23 @@ class _home_screenState extends State<home_screen> {
                       "Last Books",
                       style: TextStyle(fontSize: 16),
                     ),
-                    Container(
-                        padding: EdgeInsets.only(right: 15),
-                        child: Icon(
-                          Icons.arrow_forward_ios,
-                          size: 15,
-                          color: Colors.grey,
-                        ))
                   ],
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: 25),
-                  height: 210,
+                  margin: EdgeInsets.only(top: 25 , bottom: 25),
+                  height: MediaQuery.of(context).size.height,
                   child: ListView.builder(
                       itemCount: bookprovider.BooksList.length,
                       physics: BouncingScrollPhysics(),
-                      scrollDirection: Axis.horizontal,
+                      scrollDirection: Axis.vertical,
                       itemBuilder: (context, index) {
                         return Container(
                           padding: EdgeInsets.only(right: 20.0),
+                          alignment: Alignment.center,
                           child: Stack(children: [
                             Container(
+                              alignment: Alignment.center,
+                              margin: EdgeInsets.only(top: 5 , bottom: 5),
                               width:
                               MediaQuery.of(context).size.width / 2,
                               height:
@@ -313,27 +309,29 @@ class _home_screenState extends State<home_screen> {
                               ),
                             ),
                             Container(
+                                alignment: Alignment.center,
                                 width:
                                 MediaQuery.of(context).size.width / 2,
                                 height:
                                 MediaQuery.of(context).size.height / 4.4,
                                 padding: EdgeInsets.all(10.0),
-                                alignment: Alignment.bottomLeft,
-                                child: Text(
-                                  bookprovider.BooksList[index].name!,
-                                  style: TextStyle(color: Colors.white),
-                                )),
-                            Container(
-                                width:
-                                MediaQuery.of(context).size.width / 2,
-                                height: MediaQuery.of(context).size.height /
-                                    4,
-                                padding: EdgeInsets.all(10.0),
-                                alignment: Alignment.bottomLeft,
-                                child: Text(
-                                  bookprovider.BooksList[index].category_name!,
-                                  style: TextStyle(color: Colors.grey),
-                                ))
+                                // alignment: Alignment.bottomLeft,
+                                // child: Text(
+                                //   bookprovider.BooksList[index].name!,
+                                //   style: TextStyle(color: Colors.white),
+                                // )
+                        ),
+                            // Container(
+                            //     width:
+                            //     MediaQuery.of(context).size.width / 2,
+                            //     height: MediaQuery.of(context).size.height /
+                            //         4,
+                            //     padding: EdgeInsets.all(10.0),
+                            //     alignment: Alignment.bottomLeft,
+                            //     child: Text(
+                            //       bookprovider.BooksList[index].category_name!,
+                            //       style: TextStyle(color: Colors.grey),
+                            //     ))
                           ]),
                         );
 

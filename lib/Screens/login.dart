@@ -28,8 +28,21 @@ class _loginState extends State<login> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Column(
-              children: [Icon(Icons.exit_to_app), Text("LOG IN")],
+            Container(
+              height: 200,
+              child : Center(
+                child : Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      child: Image.asset('assets/images/book.png'),
+                      height: 200,
+                      width: 200,
+                    ),
+                  ],
+                ),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(20.0),
@@ -92,7 +105,7 @@ class _loginState extends State<login> {
                               },
                               child: Text("Forgot Password?"),
                               style:
-                                  TextButton.styleFrom(primary: Colors.black)),
+                                  TextButton.styleFrom(primary: Colors.indigo)),
                         ],
                       ),
                       Padding(
@@ -126,7 +139,7 @@ class _loginState extends State<login> {
                                           EdgeInsets.all(25)),
                                   backgroundColor:
                                       MaterialStateProperty.all<Color>(
-                                          Colors.cyan),
+                                          Colors.indigo),
                                   shape: MaterialStateProperty.all<
                                           RoundedRectangleBorder>(
                                       RoundedRectangleBorder(
@@ -149,7 +162,7 @@ class _loginState extends State<login> {
                             builder: (context) => register()));
                       },
                       child: Text("sign up"),
-                      style: TextButton.styleFrom(primary: Colors.cyan))
+                      style: TextButton.styleFrom(primary: Colors.indigo))
                 ],
               ),
             )

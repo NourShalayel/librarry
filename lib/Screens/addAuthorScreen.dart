@@ -20,10 +20,10 @@ class _addAuthorState extends State<addAuthor> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.black),
+        iconTheme: IconThemeData(color: Colors.white),
         leading: Icon(Icons.arrow_back_ios_new),
-        backgroundColor: Color(0xffea9ab5),
-        title: Text("Add Author", style: TextStyle(color: Colors.black)),
+        backgroundColor: Color(0xff3f51b5),
+        title: Text("Add Author", style: TextStyle(color: Colors.white)),
         centerTitle: true,
       ),
       body: ListView(children: [
@@ -68,7 +68,7 @@ class _addAuthorState extends State<addAuthor> {
                                 child: Text("SAVE",
                                     style: TextStyle(
                                         fontSize: 20.0,
-                                        color: Colors.black,
+                                        color: Colors.white,
                                         fontWeight: FontWeight.bold)),
                                 style: ButtonStyle(
                                     padding:
@@ -76,7 +76,7 @@ class _addAuthorState extends State<addAuthor> {
                                             EdgeInsets.all(17)),
                                     backgroundColor:
                                         MaterialStateProperty.all<Color>(
-                                            Color(0xffea9ab5)),
+                                            Color(0xff3f51b5)),
                                     shape: MaterialStateProperty.all<
                                             RoundedRectangleBorder>(
                                         RoundedRectangleBorder(

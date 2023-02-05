@@ -23,125 +23,136 @@ class _homeState extends State<home> {
       body: Center(
         child: Column(
           children: [
-            ElevatedButton(
-                onPressed: () async {
-                  FirebaseAuthHelper.firebaseAuthHelper.logout();
-                  if (await FirebaseAuth.instance.currentUser != null) {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => login()));
-                  }
-                },
-                child: Text("log out",
-                    style: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.bold)),
-                style: ButtonStyle(
-                    padding: MaterialStateProperty.all<EdgeInsets>(
-                        EdgeInsets.all(25)),
-                    backgroundColor:
-                    MaterialStateProperty.all<Color>(Color(0xffe18eaa)),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50.0),
-                        )))
-              // style: ElevatedButton.styleFrom(side: BorderRadius.circular(50.0),backgroundColor: Colors.pinkAccent , ),
-            ),
-            ElevatedButton(
+            SizedBox.expand(
+          child : ElevatedButton(
+              onPressed: () async {
+                FirebaseAuthHelper.firebaseAuthHelper.logout();
+                if (await FirebaseAuth.instance.currentUser != null) {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => login()));
+                }
+              },
+              child:
+              Text("log out",
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold )),
+              style: ButtonStyle(
+                  padding: MaterialStateProperty.all<EdgeInsets>(
+                      EdgeInsets.all(25)),
+                  backgroundColor:
+                  MaterialStateProperty.all<Color>(Color(0xff3f51b5)),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50.0),
+                      )))
+            // style: ElevatedButton.styleFrom(side: BorderRadius.circular(50.0),backgroundColor: Colors.pinkAccent , ),
+          ),
+
+        ),
+            SizedBox.expand(
+             child :ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => addCategory()));
                 },
                 child: Text("Add category",
                     style: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.bold)),
+                        color: Colors.white, fontWeight: FontWeight.bold)),
                 style: ButtonStyle(
                     padding: MaterialStateProperty.all<EdgeInsets>(
                         EdgeInsets.all(25)),
                     backgroundColor:
-                    MaterialStateProperty.all<Color>(Color(0xffe18eaa)),
+                    MaterialStateProperty.all<Color>(Color(0xff3f51b5)),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50.0),
                         )))
               // style: ElevatedButton.styleFrom(side: BorderRadius.circular(50.0),backgroundColor: Colors.pinkAccent , ),
+            )
             ),
-            ElevatedButton(
+            SizedBox.expand(
+              child :ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => showCategories()));
                 },
                 child: Text("show categories",
                     style: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.bold)),
+                        color: Colors.white, fontWeight: FontWeight.bold)),
                 style: ButtonStyle(
                     padding: MaterialStateProperty.all<EdgeInsets>(
                         EdgeInsets.all(25)),
                     backgroundColor:
-                    MaterialStateProperty.all<Color>(Color(0xffe18eaa)),
+                    MaterialStateProperty.all<Color>(Color(0xff3f51b5)),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50.0),
                         )))
               // style: ElevatedButton.styleFrom(side: BorderRadius.circular(50.0),backgroundColor: Colors.pinkAccent , ),
-            ),
-
-
-            ElevatedButton(
+            )
+    ),
+            SizedBox.expand(
+              child :ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => addAuthor()));
                 },
                 child: Text("Add author",
                     style: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.bold)),
+                        color: Colors.white, fontWeight: FontWeight.bold)),
                 style: ButtonStyle(
                     padding: MaterialStateProperty.all<EdgeInsets>(
                         EdgeInsets.all(25)),
                     backgroundColor:
-                    MaterialStateProperty.all<Color>(Color(0xffe18eaa)),
+                    MaterialStateProperty.all<Color>(Color(0xff3f51b5)),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50.0),
                         )))
               // style: ElevatedButton.styleFrom(side: BorderRadius.circular(50.0),backgroundColor: Colors.pinkAccent , ),
+            )
             ),
-            ElevatedButton(
+            SizedBox.expand(
+              child :ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => showAuthors()));
                 },
                 child: Text("show authors",
                     style: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.bold)),
+                        color: Colors.white, fontWeight: FontWeight.bold)),
                 style: ButtonStyle(
                     padding: MaterialStateProperty.all<EdgeInsets>(
                         EdgeInsets.all(25)),
                     backgroundColor:
-                    MaterialStateProperty.all<Color>(Color(0xffe18eaa)),
+                    MaterialStateProperty.all<Color>(Color(0xff3f51b5)),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50.0),
                         )))
               // style: ElevatedButton.styleFrom(side: BorderRadius.circular(50.0),backgroundColor: Colors.pinkAccent , ),
+            )
             ),
-
-            ElevatedButton(
+            SizedBox.expand(
+             child :ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) =>addBook()));
                 },
                 child: Text("add book",
                     style: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.bold)),
+                        color: Colors.white, fontWeight: FontWeight.bold)),
                 style: ButtonStyle(
                     padding: MaterialStateProperty.all<EdgeInsets>(
                         EdgeInsets.all(25)),
                     backgroundColor:
-                    MaterialStateProperty.all<Color>(Color(0xffe18eaa)),
+                    MaterialStateProperty.all<Color>(Color(0xff3f51b5)),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50.0),
                         )))
               // style: ElevatedButton.styleFrom(side: BorderRadius.circular(50.0),backgroundColor: Colors.pinkAccent , ),
+            )
             ),
 
           ],

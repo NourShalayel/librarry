@@ -27,9 +27,9 @@ class _registerState extends State<register> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 40.0),
+              padding: const EdgeInsets.only(top: 2.0),
               child: Image(
-                image: AssetImage('assets/logo.png'),
+                image: AssetImage('assets/images/book.png'),
               ),
             ),
             Padding(
@@ -119,7 +119,7 @@ class _registerState extends State<register> {
                                 }
                               },
                               child: Text("REGISTER" , style: TextStyle(
-                                  color: Colors.black,
+                                  color: Colors.white,
                                   fontWeight: FontWeight.bold)),
                               style: ButtonStyle(
                                   padding:
@@ -127,7 +127,7 @@ class _registerState extends State<register> {
                                       EdgeInsets.all(25)),
                                   backgroundColor:
                                   MaterialStateProperty.all<Color>(
-                                      Color(0xffe18eaa)),
+                                      Color(0xff3f51b5)),
                                   shape: MaterialStateProperty.all<
                                       RoundedRectangleBorder>(
                                       RoundedRectangleBorder(
@@ -151,7 +151,7 @@ class _registerState extends State<register> {
                         Navigator.of(context).push(MaterialPageRoute(builder: (context)=>login()));
                       },
                       child: Text("Login Now"),
-                      style: TextButton.styleFrom(primary: Color(0xffbead15)))
+                      style: TextButton.styleFrom(primary: Color(0xff3f51b5)))
                 ],
               ),
             )

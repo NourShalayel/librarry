@@ -25,7 +25,7 @@ class _forgot_passwordState extends State<forgot_password> {
             Padding(
               padding: const EdgeInsets.only(top: 40.0),
               child: Image(
-                image: AssetImage('assets/graphic.png'),
+                image:  AssetImage('assets/images/book.png'),
               ),
             ),
             Text("Forgot your password?",
@@ -81,7 +81,7 @@ class _forgot_passwordState extends State<forgot_password> {
                               },
                               child: Text("SEND",
                                   style: TextStyle(
-                                      color: Colors.black,
+                                      color: Colors.white,
                                       fontWeight: FontWeight.bold)),
                               style: ButtonStyle(
                                   padding:
@@ -89,7 +89,7 @@ class _forgot_passwordState extends State<forgot_password> {
                                           EdgeInsets.all(25)),
                                   backgroundColor:
                                       MaterialStateProperty.all<Color>(
-                                          Color(0xffe18eaa)),
+                                          Color(0xff3f51b5)),
                                   shape: MaterialStateProperty.all<
                                           RoundedRectangleBorder>(
                                       RoundedRectangleBorder(
@@ -114,7 +114,7 @@ class _forgot_passwordState extends State<forgot_password> {
                             MaterialPageRoute(builder: (context) => login()));
                       },
                       child: Text("Login Now"),
-                      style: TextButton.styleFrom(primary: Color(0xffbead15)))
+                      style: TextButton.styleFrom(primary: Color(0xff3f51b5)))
                 ],
               ),
             )
