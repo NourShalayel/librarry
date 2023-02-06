@@ -14,6 +14,7 @@ import '../model/BooksModel.dart';
 import '../model/CategoryModel.dart';
 import '../services/FirebaseFireStoreHelper.dart';
 import 'addCategoryScreen.dart';
+import 'home_screen.dart';
 
 class addBook extends StatefulWidget {
   const addBook({Key? key}) : super(key: key);
@@ -105,7 +106,16 @@ class _addBookState extends State<addBook> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: TextField(
+                          child: TextFormField(
+                            validator: (inputValue) {
+                              if (inputValue != null) {
+                                if (inputValue.isEmpty) {
+                                  return "please enter name";
+                                } else if (inputValue.length < 3) {
+                                  return "name is too short!";
+                                }
+                              }
+                            },
                             controller: book_name_controller,
                             decoration: InputDecoration(
                                 hintText: "Book Name",
@@ -118,7 +128,16 @@ class _addBookState extends State<addBook> {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: TextField(
+                          child: TextFormField(
+                            validator: (inputValue) {
+                              if (inputValue != null) {
+                                if (inputValue.isEmpty) {
+                                  return "please enter page number";
+                                } else if (double.tryParse(inputValue) == null) {
+                                  return "please enter number";
+                                }
+                              }
+                            },
                             controller: num_page_controller,
                             decoration: InputDecoration(
                                 hintText: "pages number",
@@ -129,7 +148,18 @@ class _addBookState extends State<addBook> {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: TextField(
+                          child:  TextFormField(
+                            validator: (inputValue) {
+                              if (inputValue != null) {
+                                if (inputValue.isEmpty) {
+                                  return "please enter publish year";
+                                } else if (double.tryParse(inputValue) == null) {
+                                  return "please enter number";
+                                }else if(double.parse(inputValue) > 2023){
+                                  return " publish year must be under 2023";
+                                }
+                              }
+                            },
                             controller: pub_year_controller,
                             decoration: InputDecoration(
                                 hintText: "publish year",
@@ -140,7 +170,16 @@ class _addBookState extends State<addBook> {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: TextField(
+                          child: TextFormField(
+                            validator: (inputValue) {
+                              if (inputValue != null) {
+                                if (inputValue.isEmpty) {
+                                  return "please enter language";
+                                } else if (inputValue.length < 2) {
+                                  return "name is too short!";
+                                }
+                              }
+                            },
                             controller: language_controller,
                             decoration: InputDecoration(
                                 hintText: "book language",
@@ -151,7 +190,16 @@ class _addBookState extends State<addBook> {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: TextField(
+                          child: TextFormField(
+                            validator: (inputValue) {
+                              if (inputValue != null) {
+                                if (inputValue.isEmpty) {
+                                  return "please enter price";
+                                } else if (double.tryParse(inputValue) == null) {
+                                  return "please enter number";
+                                }
+                              }
+                            },
                             controller: price_controller,
                             decoration: InputDecoration(
                                 hintText: "book price",
@@ -374,25 +422,26 @@ class _addBookState extends State<addBook> {
                             width: double.infinity,
                             child: ElevatedButton(
                                 onPressed: () {
-                                  FirebaseFireStorge.firebaseFireStorge
-                                      .UploadFile(imageFile)
-                                      .then((value) => FirebaseFireStoreHelper.fireStoreHelper.addBook(
-                                      Books(
-                                          name: book_name_controller.text,
-                                          img: FirebaseFireStorge
-                                              .firebaseFireStorge.downloadUrl,
-                                          num_page: int.parse(
-                                              num_page_controller.text),
-                                          pub_year: int.parse(
-                                              pub_year_controller.text),
-                                          category_name: selectedCat,
-                                          auth_name: selectedAuth,
-                                          language: language_controller.text,
-                                          price: double.parse(
-                                              price_controller.text))))
-                                      .then((value) => Navigator.of(context)
-                                          .pushReplacement(MaterialPageRoute(builder: (context) => addCategory())));
-                                },
+                                  if (formkey.currentState!.validate() && selectedAuth != null && selectedCat != null && imageFile != null ) {
+                                    FirebaseFireStorge.firebaseFireStorge
+                                        .UploadFile(imageFile)
+                                        .then((value) => FirebaseFireStoreHelper.fireStoreHelper.addBook(Books(
+                                        name: book_name_controller.text,
+                                        img: FirebaseFireStorge
+                                            .firebaseFireStorge.downloadUrl,
+                                        num_page: int.parse(
+                                            num_page_controller.text),
+                                        pub_year: int.parse(
+                                            pub_year_controller.text),
+                                        category_name: selectedCat,
+                                        auth_name: selectedAuth,
+                                        language: language_controller.text,
+                                        price: double.parse(
+                                            price_controller.text))))
+                                        .then((value) => Navigator.of(context)
+                                        .pushReplacement(MaterialPageRoute(builder: (context) => home_screen())));
+                                  }
+                          },
                                 child: Text("SAVE",
                                     style: TextStyle(
                                         fontSize: 20.0,
@@ -470,6 +519,7 @@ class _addBookState extends State<addBook> {
     final pickedFile = await picker.getImage(source: source);
     setState(() {
       imageFile = pickedFile!;
+      Navigator.of(context).pop();
     });
   }
 }

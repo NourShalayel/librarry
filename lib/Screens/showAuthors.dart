@@ -68,7 +68,7 @@ class _showAuthorsState extends State<showAuthors> {
                                       Text(
                                         author.name!,
                                         style: TextStyle(
-                                            color: Colors.orange,
+                                            color: Colors.black,
                                             fontSize: selectedIndex == index
                                                 ? 25
                                                 : 20),

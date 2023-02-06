@@ -1,12 +1,10 @@
 import 'dart:io';
 
-
 import 'package:flutter/material.dart';
 import 'package:librarry/Screens/showCategories.dart';
 
 import '../Services/FirebaseFireStoreHelper.dart';
 import '../model/CategoryModel.dart';
-
 
 class addCategory extends StatefulWidget {
   const addCategory({Key? key}) : super(key: key);
@@ -43,7 +41,16 @@ class _addCategoryState extends State<addCategory> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: TextField(
+                          child: TextFormField(
+                            validator: (inputValue) {
+                              if (inputValue != null) {
+                                if (inputValue.isEmpty) {
+                                  return "please enter category";
+                                } else if (inputValue.length < 3) {
+                                  return "category is too short!";
+                                }
+                              }
+                            },
                             controller: categoty_name_controller,
                             decoration: InputDecoration(
                                 hintText: "Category Name",
@@ -60,15 +67,16 @@ class _addCategoryState extends State<addCategory> {
                             width: double.infinity,
                             child: ElevatedButton(
                                 onPressed: () {
-
-                                  FirebaseFireStoreHelper
-                                      .fireStoreHelper.addCategory(
-                                      Categories(
-                                          name: categoty_name_controller.text)
-                                  ).then((value) =>
-                                      Navigator.of(context).push(MaterialPageRoute(
-                                          builder: (context) =>showCategories())));
-
+                                  if (formkey.currentState!.validate()) {
+                                    FirebaseFireStoreHelper.fireStoreHelper
+                                        .addCategory(Categories(
+                                            name:
+                                                categoty_name_controller.text))
+                                        .then((value) => Navigator.of(context)
+                                            .push(MaterialPageRoute(
+                                                builder: (context) =>
+                                                    showCategories())));
+                                  }
                                 },
                                 child: Text("SAVE",
                                     style: TextStyle(
@@ -77,16 +85,16 @@ class _addCategoryState extends State<addCategory> {
                                         fontWeight: FontWeight.bold)),
                                 style: ButtonStyle(
                                     padding:
-                                    MaterialStateProperty.all<EdgeInsets>(
-                                        EdgeInsets.all(17)),
+                                        MaterialStateProperty.all<EdgeInsets>(
+                                            EdgeInsets.all(17)),
                                     backgroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                        Color(0xff3f51b5)),
+                                        MaterialStateProperty.all<Color>(
+                                            Color(0xff3f51b5)),
                                     shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
+                                            RoundedRectangleBorder>(
                                         RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(50.0),
-                                        )))),
+                                      borderRadius: BorderRadius.circular(50.0),
+                                    )))),
                           ),
                         )
                       ],
@@ -98,5 +106,4 @@ class _addCategoryState extends State<addCategory> {
       ]),
     );
   }
-
 }

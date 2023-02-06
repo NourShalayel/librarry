@@ -70,7 +70,7 @@ class _showAuthBooksState extends State<showAuthBooks> {
                                     Text(
                                       book.name!,
                                       style: TextStyle(
-                                          color: Colors.orange,
+                                          color: Colors.black,
                                           fontSize: selectedIndex == index
                                               ? 25
                                               : 20),

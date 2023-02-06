@@ -5,6 +5,7 @@ import 'package:librarry/Screens/showAuthors.dart';
 
 import '../Services/FirebaseFireStoreHelper.dart';
 import '../model/AuthorModel.dart';
+
 class addAuthor extends StatefulWidget {
   const addAuthor({Key? key}) : super(key: key);
 
@@ -40,7 +41,16 @@ class _addAuthorState extends State<addAuthor> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: TextField(
+                          child: TextFormField(
+                            validator: (inputValue) {
+                              if (inputValue != null) {
+                                if (inputValue.isEmpty) {
+                                  return "please enter name";
+                                } else if (inputValue.length < 3) {
+                                  return "name is too short!";
+                                }
+                              }
+                            },
                             controller: author_name_controller,
                             decoration: InputDecoration(
                                 hintText: "Author Name",
@@ -57,13 +67,16 @@ class _addAuthorState extends State<addAuthor> {
                             width: double.infinity,
                             child: ElevatedButton(
                                 onPressed: () {
-                                  FirebaseFireStoreHelper.fireStoreHelper
-                                      .addAuthor(Authors(
-                                          name: author_name_controller.text))
-                                      .then((value) => Navigator.of(context)
-                                          .push(MaterialPageRoute(
-                                              builder: (context) =>
-                                                  showAuthors())));
+                                  if (formkey.currentState!.validate()) {
+                                    FirebaseFireStoreHelper.fireStoreHelper
+                                        .addAuthor(Authors(
+                                        name: author_name_controller.text))
+                                        .then((value) => Navigator.of(context)
+                                        .push(MaterialPageRoute(
+                                        builder: (context) =>
+                                            showAuthors())));
+                                  }
+
                                 },
                                 child: Text("SAVE",
                                     style: TextStyle(

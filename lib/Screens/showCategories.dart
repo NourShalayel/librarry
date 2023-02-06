@@ -71,7 +71,7 @@ class _showCategoriesState extends State<showCategories> {
                                       Text(
                                         category.name!,
                                         style: TextStyle(
-                                            color: Colors.orange,
+                                            color: Colors.black,
                                             fontSize: selectedIndex == index
                                                 ? 25
                                                 : 20),
