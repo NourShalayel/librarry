@@ -23,151 +23,156 @@ class _loginState extends State<login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              height: 200,
-              child : Center(
-                child : Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                      child: Image.asset('assets/images/book.png'),
-                      height: 200,
-                      width: 200,
+      body:
+      ListView(
+        children:[
+          Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  height: 200,
+                  child : Center(
+                    child : Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          child: Image.asset('assets/images/book.png'),
+                          height: 200,
+                          width: 200,
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Form(
-                  key: formkey,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextFormField(
-                          validator: (inputValue) {
-                            if (inputValue != null) {
-                              if (inputValue.isEmpty) {
-                                return "please enter email";
-                              } else if (!RegExp(r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$").hasMatch(EmailController.value.text)) {
-                                return "you must enter email";
-                              }
-                            }
-                          },
-                          controller: EmailController,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                              hintText: "Email Address",
-                              labelText: "Email",
-                              border: OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: Colors.grey, width: 1),
-                                  borderRadius: BorderRadius.circular(50.0))),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextFormField(
-                          validator: (inputValue) {
-                            if (inputValue != null) {
-                              if (inputValue.isEmpty) {
-                                return "please enter password";
-                              } else if (inputValue.length < 8) {
-                                return "password must be more than 8";
-                              }
-                            }
-                          },
-                          controller: PasswordController,
-                          obscureText: true,
-                          decoration: InputDecoration(
-                              hintText: "password",
-                              labelText: "password",
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(50.0))),
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Form(
+                      key: formkey,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          TextButton(
-                              onPressed: () {
-                                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                                    builder: (context) => forgot_password()));
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: TextFormField(
+                              validator: (inputValue) {
+                                if (inputValue != null) {
+                                  if (inputValue.isEmpty) {
+                                    return "please enter email";
+                                  } else if (!RegExp(r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$").hasMatch(EmailController.value.text)) {
+                                    return "you must enter email";
+                                  }
+                                }
                               },
-                              child: Text("Forgot Password?"),
-                              style:
-                                  TextButton.styleFrom(primary: Colors.indigo)),
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: SizedBox(
-                          width: double.infinity,
-                          child: ElevatedButton(
-                              onPressed: () async
-                              {
-                                if (formkey.currentState!.validate()) {
-                                  FirebaseAuthHelper
-                                      .firebaseAuthHelper
-                                      .login(Users(
-                                    email: EmailController.text,
-                                    password: PasswordController.text,
-                                  ));
-
-                                  if(await FirebaseAuth.instance.currentUser != null){
+                              controller: EmailController,
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                  hintText: "Email Address",
+                                  labelText: "Email",
+                                  border: OutlineInputBorder(
+                                      borderSide:
+                                      BorderSide(color: Colors.grey, width: 1),
+                                      borderRadius: BorderRadius.circular(50.0))),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: TextFormField(
+                              validator: (inputValue) {
+                                if (inputValue != null) {
+                                  if (inputValue.isEmpty) {
+                                    return "please enter password";
+                                  } else if (inputValue.length < 8) {
+                                    return "password must be more than 8";
+                                  }
+                                }
+                              },
+                              controller: PasswordController,
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                  hintText: "password",
+                                  labelText: "password",
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(50.0))),
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              TextButton(
+                                  onPressed: () {
                                     Navigator.of(context).pushReplacement(MaterialPageRoute(
-                                        builder: (context) => home()));
-                                }
-                                }
-                              },
-                              child: Text("LOG IN",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold)),
-                              style: ButtonStyle(
-                                  padding:
+                                        builder: (context) => forgot_password()));
+                                  },
+                                  child: Text("Forgot Password?"),
+                                  style:
+                                  TextButton.styleFrom(primary: Colors.indigo)),
+                            ],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: SizedBox(
+                              width: double.infinity,
+                              child: ElevatedButton(
+                                  onPressed: () async
+                                  {
+                                    if (formkey.currentState!.validate()) {
+                                      FirebaseAuthHelper
+                                          .firebaseAuthHelper
+                                          .login(Users(
+                                        email: EmailController.text,
+                                        password: PasswordController.text,
+                                      ));
+
+                                      if(await FirebaseAuth.instance.currentUser != null){
+                                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                                            builder: (context) => home()));
+                                      }
+                                    }
+                                  },
+                                  child: Text("LOG IN",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold)),
+                                  style: ButtonStyle(
+                                      padding:
                                       MaterialStateProperty.all<EdgeInsets>(
                                           EdgeInsets.all(25)),
-                                  backgroundColor:
+                                      backgroundColor:
                                       MaterialStateProperty.all<Color>(
                                           Colors.indigo),
-                                  shape: MaterialStateProperty.all<
+                                      shape: MaterialStateProperty.all<
                                           RoundedRectangleBorder>(
-                                      RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(50.0),
-                                  )))),
-                        ),
-                      )
+                                          RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(50.0),
+                                          )))),
+                            ),
+                          )
+                        ],
+                      )),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("Do not have an account? "),
+                      TextButton(
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => register()));
+                          },
+                          child: Text("sign up"),
+                          style: TextButton.styleFrom(primary: Colors.indigo))
                     ],
-                  )),
+                  ),
+                )
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("Do not have an account? "),
-                  TextButton(
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => register()));
-                      },
-                      child: Text("sign up"),
-                      style: TextButton.styleFrom(primary: Colors.indigo))
-                ],
-              ),
-            )
-          ],
-        ),
+          ),
+        ]
       ),
     );
   }
